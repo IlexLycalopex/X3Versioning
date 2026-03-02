@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sage X3 Release Comparator</title>
+  <meta name="description" content="Compare Sage X3 releases, identify delta changes, filter by functional area and legislation." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <!-- SVG logo mark -->
+        <svg class="header-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="6" fill="#00b5cc"/>
+          <path d="M8 10h12c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2H10c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2h14" stroke="#1a2744" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="27" cy="26" r="3" fill="#e8a820"/>
+          <circle cx="27" cy="10" r="3" fill="#1a2744"/>
+        </svg>
+        <div>
+          <div class="header-title">Sage X3 Release Comparator</div>
+          <div class="header-subtitle">Version Delta &amp; Change Analysis</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="btn-refresh" title="Clear cached release data">
+          &#8635; Refresh Data
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cache cleared banner -->
+  <div id="cache-banner"></div>
+
+  <!-- ============================================================
+       MAIN
+  ============================================================ -->
+  <main>
+    <div class="container">
+
+      <!-- Input Card -->
+      <div class="input-card">
+        <h2 class="card-title">Configure Comparison</h2>
+
+        <!-- Version selection -->
+        <div class="version-row">
+          <div class="field-group">
+            <label for="sel-from">Current Version</label>
+            <select id="sel-from">
+              <option value="">Select version...</option>
+            </select>
+          </div>
+          <div class="version-arrow-sep" aria-hidden="true">&#8594;</div>
+          <div class="field-group">
+            <label for="sel-to">Target Version</label>
+            <select id="sel-to">
+              <option value="">Select version...</option>
+            </select>
+          </div>
+        </div>
+        <p class="version-warning" id="version-warning" role="alert"></p>
+
+        <!-- Filters -->
+        <div class="filter-row">
+          <div>
+            <div class="filter-group-title">Functional Areas</div>
+            <div class="multi-select" id="ms-areas" role="group" aria-label="Functional area filter"></div>
+            <p class="filter-hint">Leave blank to include all areas</p>
+          </div>
+          <div>
+            <div class="filter-group-title">Legislations</div>
+            <div class="multi-select" id="ms-legs" role="group" aria-label="Legislation filter"></div>
+            <p class="filter-hint">Leave blank to include all legislations</p>
+          </div>
+        </div>
+
+        <!-- Action row -->
+        <div class="compare-row">
+          <button class="btn btn-primary btn-lg" id="btn-compare" disabled>
+            &#9654; Compare Releases
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading indicator -->
+      <div id="loading" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <span>Fetching release data&#8230;</span>
+      </div>
+
+      <!-- Results panel (populated by JS) -->
+      <div id="results" role="region" aria-label="Comparison results" aria-live="polite"></div>
+
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <p>Sage X3 Release Comparator &mdash; data sourced from
+      <a href="https://online-help.sagex3.com/x3-release-notes/api/" target="_blank" rel="noopener">
+        online-help.sagex3.com
+      </a>.
+      Not affiliated with Sage Group plc.
+    </p>
+  </footer>
+
+  <!-- JS modules -->
+  <script src="js/parser.js"></script>
+  <script src="js/comparator.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
